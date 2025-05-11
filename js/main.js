@@ -254,6 +254,7 @@ function loadLanguageCards() {
             <p><strong>Script:</strong> ${lang.script}</p>
             <p><strong>Best Accuracy:</strong> ${lang.statistics.bestAccuracy}</p>
             <p><strong>Key Challenges:</strong> ${lang.statistics.challenges}</p>
+            <hr>
         `;
         languageSection.appendChild(card);
     });
@@ -272,6 +273,7 @@ function loadPapers() {
             <p><strong>Authors:</strong> ${paper.authors}</p>
             <p><strong>Year:</strong> ${paper.year}</p>
             <p>${paper.abstract}</p>
+            <hr>
         `;
         papersSection.appendChild(card);
     });
@@ -291,6 +293,7 @@ function loadDatasets() {
             <p><strong>Size:</strong> ${dataset.size}</p>
             <p><strong>Creator:</strong> ${dataset.creator}</p>
             <p>${dataset.description}</p>
+            <hr>
         `;
         datasetsSection.appendChild(card);
     });
@@ -309,6 +312,7 @@ function loadTools() {
             <p><strong>Languages:</strong> ${tool.languages}</p>
             <p><strong>Type:</strong> ${tool.type}</p>
             <p>${tool.description}</p>
+            <hr>
         `;
         toolsSection.appendChild(card);
     });
@@ -326,6 +330,7 @@ function loadResources() {
             <h3><a href="${resource.url}" target="_blank">${resource.name}</a></h3>
             <p><strong>Type:</strong> ${resource.type}</p>
             <p>${resource.description}</p>
+            <hr>
         `;
         resourcesSection.appendChild(card);
     });
