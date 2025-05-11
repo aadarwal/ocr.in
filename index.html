@@ -14,21 +14,31 @@
         }
         .container {
             display: flex;
+            margin: 0 auto;
+            max-width: 1200px;
         }
         .main-content {
             flex: 1;
             max-width: 800px;
-            margin-right: 20px;
+            margin-left: 150px; /* Add space to the left for the menu */
+            padding-left: 30px;
         }
         .side-nav {
-            width: 150px;
-            padding-top: 30px;
-            text-align: right;
+            width: 120px;
+            padding-top: 90px;
+            text-align: left;
+            position: fixed;
+            left: 40px;
         }
         .side-nav a {
             display: block;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             text-decoration: none;
+            color: purple;
+            font-weight: normal;
+        }
+        .side-nav a:hover {
+            text-decoration: underline;
         }
         table {
             border-collapse: collapse;
