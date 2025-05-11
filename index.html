@@ -115,6 +115,60 @@
             
             <hr>
             
+            <div id="about">
+                <h2>About This Project</h2>
+                <p>This site serves as a central repository tracking the state of Optical Character Recognition (OCR) for Indic languages across the world. It aims to catalog research efforts, available datasets, tools, and resources to facilitate advancements in this domain.</p>
+                
+                <p>Indic languages present unique challenges for OCR systems due to their complex scripts, diverse writing systems, and rich typographical traditions. This project aims to bridge the gap between research and implementation by providing a comprehensive overview of the field.</p>
+                
+                <h3>Why Indic Scripts Are Special</h3>
+                <p>Indic scripts (including Devanagari, Bengali, Tamil, Telugu, Malayalam, Kannada, Gurmukhi, Odia, Gujarati, and Urdu) derive from the ancient Brahmi family and are <em>abugidas</em>: consonants carry an inherent vowel and combine with diacritics to form <strong>compound glyphs (akṣaras)</strong>.</p>
+                
+                <h3>Challenges for OCR</h3>
+                <table>
+                    <tr>
+                        <th>Challenge</th>
+                        <th>Impact on OCR</th>
+                    </tr>
+                    <tr>
+                        <td>Ligatures & consonant clusters (e.g., क्ष, त्र्य, ज्ञ)</td>
+                        <td>Prevent simple character segmentation</td>
+                    </tr>
+                    <tr>
+                        <td>The <strong>śirorekhā</strong> (headline) in Devanagari/Gurmukhi</td>
+                        <td>Connects letters, causing touching-character errors</td>
+                    </tr>
+                    <tr>
+                        <td>Vowel diacritics above/below/beside the base</td>
+                        <td>Small marks are lost at low resolution</td>
+                    </tr>
+                    <tr>
+                        <td>Font-and-encoding diversity pre-Unicode</td>
+                        <td>Training data must span dozens of fonts & legacy encodings</td>
+                    </tr>
+                    <tr>
+                        <td>Very long Sanskrit compounds</td>
+                        <td>Dictionary-based post-correction alone is ineffective</td>
+                    </tr>
+                </table>
+                
+                <h3>Technique Evolution</h3>
+                <ol>
+                    <li><strong>Rule-based / structural</strong> (1970s) → handwriting of primitives</li>
+                    <li><strong>Statistical & feature-engineering</strong> (1990s): zoning, profiles, junction counts; decision trees, k-NN, SVM</li>
+                    <li><strong>Hybrid systems + lexicon post-processing</strong> (2000s): Chitrankan (Hindi) transferred to C-DAC</li>
+                    <li><strong>Deep learning revolution</strong> (2015 →):
+                        <ul>
+                            <li><strong>CNN-LSTM + CTC</strong> delivers segmentation-free line recognition</li>
+                            <li>Adopted in <strong>Tesseract 4/5</strong>, <strong>OCRopy</strong>, <strong>EasyOCR</strong>, IIIT-H CVIT models</li>
+                            <li>Attention & Transformer variants tackle <em>very long</em> Sanskrit compounds (>50 chars)</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+            
+            <hr>
+            
             <div id="ocr-results">
                 <h2>OCR Comparison Results</h2>
                 <p>This section compares OCR results from Gemma 3 with existing transliterations of Indic texts.</p>
@@ -177,60 +231,6 @@
                         <li>Error pattern 2 will be displayed here</li>
                     </ul>
                 </div>
-            </div>
-            
-            <hr>
-            
-            <div id="about">
-                <h2>About This Project</h2>
-                <p>This site serves as a central repository tracking the state of Optical Character Recognition (OCR) for Indic languages across the world. It aims to catalog research efforts, available datasets, tools, and resources to facilitate advancements in this domain.</p>
-                
-                <p>Indic languages present unique challenges for OCR systems due to their complex scripts, diverse writing systems, and rich typographical traditions. This project aims to bridge the gap between research and implementation by providing a comprehensive overview of the field.</p>
-                
-                <h3>Why Indic Scripts Are Special</h3>
-                <p>Indic scripts (including Devanagari, Bengali, Tamil, Telugu, Malayalam, Kannada, Gurmukhi, Odia, Gujarati, and Urdu) derive from the ancient Brahmi family and are <em>abugidas</em>: consonants carry an inherent vowel and combine with diacritics to form <strong>compound glyphs (akṣaras)</strong>.</p>
-                
-                <h3>Challenges for OCR</h3>
-                <table>
-                    <tr>
-                        <th>Challenge</th>
-                        <th>Impact on OCR</th>
-                    </tr>
-                    <tr>
-                        <td>Ligatures & consonant clusters (e.g., क्ष, त्र्य, ज्ञ)</td>
-                        <td>Prevent simple character segmentation</td>
-                    </tr>
-                    <tr>
-                        <td>The <strong>śirorekhā</strong> (headline) in Devanagari/Gurmukhi</td>
-                        <td>Connects letters, causing touching-character errors</td>
-                    </tr>
-                    <tr>
-                        <td>Vowel diacritics above/below/beside the base</td>
-                        <td>Small marks are lost at low resolution</td>
-                    </tr>
-                    <tr>
-                        <td>Font-and-encoding diversity pre-Unicode</td>
-                        <td>Training data must span dozens of fonts & legacy encodings</td>
-                    </tr>
-                    <tr>
-                        <td>Very long Sanskrit compounds</td>
-                        <td>Dictionary-based post-correction alone is ineffective</td>
-                    </tr>
-                </table>
-                
-                <h3>Technique Evolution</h3>
-                <ol>
-                    <li><strong>Rule-based / structural</strong> (1970s) → handwriting of primitives</li>
-                    <li><strong>Statistical & feature-engineering</strong> (1990s): zoning, profiles, junction counts; decision trees, k-NN, SVM</li>
-                    <li><strong>Hybrid systems + lexicon post-processing</strong> (2000s): Chitrankan (Hindi) transferred to C-DAC</li>
-                    <li><strong>Deep learning revolution</strong> (2015 →):
-                        <ul>
-                            <li><strong>CNN-LSTM + CTC</strong> delivers segmentation-free line recognition</li>
-                            <li>Adopted in <strong>Tesseract 4/5</strong>, <strong>OCRopy</strong>, <strong>EasyOCR</strong>, IIIT-H CVIT models</li>
-                            <li>Attention & Transformer variants tackle <em>very long</em> Sanskrit compounds (>50 chars)</li>
-                        </ul>
-                    </li>
-                </ol>
             </div>
             
             <hr>
@@ -390,8 +390,8 @@
         </div>
         
         <div class="side-nav">
-            <a href="#ocr-results">OCR Results</a>
             <a href="#about">About</a>
+            <a href="#ocr-results">OCR Results</a>
             <a href="#languages">Languages</a>
             <a href="#papers">Research</a>
             <a href="#datasets">Datasets</a>
