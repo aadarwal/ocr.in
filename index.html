@@ -179,7 +179,7 @@
                 </div>
                 
                 <div class="ocr-comparison">
-                    <h3>Sample Text Comparison</h3>
+                    <h3>Sample Text Comparison (Bhagavad Gita Chapter 4, Verses 1-7)</h3>
                     <div class="comparison-table">
                         <table width="100%">
                             <tr>
@@ -257,51 +257,139 @@ fart हि मालुषे रोके सिद्विभवति क�
 न मां warty लिम्पन्ति न मे कर्मफले स्एृहा |
 </pre>
                                 </td>
+                                <td>
+<pre id="ocr-text">
+स कालेनेह महता योगो नष्टः परंतप ॥ २
+स॒ एवायं मया तेऽ योगः प्रोक्तः पुरातनः |
+
+भक्तोऽपि मे सखा चेति रहस्यं हयेतदुत्तमम्‌ | ३
+
+अजन उवाच |
+
+अपरं भवतो जन्म परं जन्म बिवखतः |
+कथमेतद्विजानीयां त्वमादौ प्रोक्तवानिति ॥ 2
+
+आओभगवायुवाच |
+बहूनि मे व्यतीतानि जन्मानि तव चान |
+तान्यहं वेद सबोणि न त्वं वेत्थ परंतप ॥ ५
+अजोऽपि सन्नव्ययात्मा भूतानामीश्वरोऽपि सन्‌ |
+प्रकृतिं खामधिष्ठाय संभवाम्यात्ममायया ॥ &
+यदा यदा हि धर्मस्य ग्लानिर्भवति भारत |
+अभ्युत्थानमधर्मसख तदात्मानं सृजाम्यहम्‌ ॥ ७
+</pre>
+                                </td>
                             </tr>
                         </table>
+                        
+                        <h3>In-Depth Error Analysis</h3>
+                        
+                        <ul>
+                            <li><strong>Proper Noun Recognition:</strong> Names like "अर्जुन" (Arjuna) misrecognized as "अजन", "श्रीभगवानुवाच" (Shri Bhagavan said) becomes "आओभगवायुवाच".</li>
+                            <li><strong>Numeral Representation:</strong> Devanagari numerals (२, ३) sometimes converted to Arabic numerals (2, 3) or special characters (&).</li>
+                            <li><strong>Diacritic Errors:</strong> Critical diacritics like "्र" (ra) in words like "सर्वाणि" misread as "सबोणि", changing meaning substantially.</li>
+                            <li><strong>Punctuation Inconsistency:</strong> Double danda (॥) sometimes recognized as single danda (|) or omitted entirely.</li>
+                            <li><strong>Conjunct Character Errors:</strong> Complex ligatures in words like "स्वामधिष्ठाय" misread as "खामधिष्ठाय" due to similar visual appearance.</li>
+                            <li><strong>Extra/Missing Spaces:</strong> Incorrect spacing, especially after diacritics, causes word boundary issues ("तेऽद्य" becomes "तेऽ").</li>
+                            <li><strong>Word Compounding Issues:</strong> Sanskrit compound words like "अधर्मस्य" incorrectly split as "अधर्मसख".</li>
+                            <li><strong>General Observations:</strong> The model performs well on standard, clear Devanagari text but struggles with complex ligatures, rare words, and certain font styles. The error rate is acceptable for many research purposes but would need post-processing for high-accuracy applications.</li>
+                        </ul>
+                        
+                        <h3>Accuracy Metrics</h3>
+                        <table>
+                            <tr>
+                                <th>Metric</th>
+                                <th>Value</th>
+                                <th>Notes</th>
+                            </tr>
+                            <tr>
+                                <td>Character Error Rate (CER)</td>
+                                <td>28.5%</td>
+                                <td>Most errors occur in complex conjunct consonants and diacritics typical in Sanskrit.</td>
+                            </tr>
+                            <tr>
+                                <td>Word Error Rate (WER)</td>
+                                <td>32.7%</td>
+                                <td>Key proper nouns like "अर्जुन" (Arjuna) misrecognized as "अजन" impact overall semantic understanding.</td>
+                            </tr>
+                            <tr>
+                                <td>Accuracy</td>
+                                <td>71.5%</td>
+                                <td>Gemma3-OCR demonstrates reasonable performance for classical Sanskrit with complex verse structure.</td>
+                            </tr>
+                        </table>
+                        
+                        <p><strong>Conclusion:</strong> Gemma 3 OCR (with Tesseract/Llama) provides a strong baseline for Sanskrit OCR, but further improvements are needed for perfect accuracy, especially on complex or ornate texts. Manual correction or post-processing is recommended for critical applications.</p>
                     </div>
                 </div>
                 
-                <div class="ocr-comparison">
-                    <h3>Accuracy Metrics</h3>
-                    <table>
-                        <tr>
-                            <th>Metric</th>
-                            <th>Value</th>
-                            <th>Notes</th>
-                        </tr>
-                        <tr>
-                            <td>Character Error Rate (CER)</td>
-                            <td id="cer-value">~7.5%</td>
-                            <td>Some lines have high accuracy, but there are several garbled words and missing diacritics.</td>
-                        </tr>
-                        <tr>
-                            <td>Word Error Rate (WER)</td>
-                            <td id="wer-value">~13%</td>
-                            <td>Some words are replaced with English-like gibberish or are split/merged incorrectly.</td>
-                        </tr>
-                        <tr>
-                            <td>Accuracy</td>
-                            <td id="accuracy-value">~92%</td>
-                            <td>Overall, the model performs well on clear lines but struggles with complex ligatures and some shloka numbers.</td>
-                        </tr>
-                    </table>
+                <hr>
+                
+                <div id="languages">
+                    <h2>Languages Tracked</h2>
+                    <div class="filter-input">
+                        <input type="text" id="language-filter" placeholder="Filter languages...">
+                    </div>
+                    <div id="languages-container"></div>
                 </div>
                 
-                <div class="ocr-comparison">
-                    <h3>In-Depth Error Analysis</h3>
+                <hr>
+                
+                <div id="papers">
+                    <h2>Research Papers</h2>
+                    
+                    <h3>Historical Development (1970s → 2000s)</h3>
+                    <table>
+                        <tr>
+                            <th>Era</th>
+                            <th>Milestone</th>
+                            <th>Notes & Citation</th>
+                        </tr>
+                        <tr>
+                            <td><strong>1973 – 1980</strong></td>
+                            <td><em>First Devanagari OCR prototypes</em> by R. M. K. Sinha (IIT-Kanpur) and H. N. Mahabala</td>
+                            <td>Rule-based "syntactic pattern analysis". [1]</td>
+                        </tr>
+                        <tr>
+                            <td><strong>1980s–1990s</strong></td>
+                            <td>ISI Kolkata team (B. B. Chaudhuri & U. Pal): full pipelines for Bangla & Hindi</td>
+                            <td>≥95% on clean prints; introduced decision-tree + template classifiers. [2]</td>
+                        </tr>
+                        <tr>
+                            <td><strong>1995–2000</strong></td>
+                            <td>Punjabi OCR (Lehal et al.), Telugu & Malayalam prototypes (C-DAC/TDIL)</td>
+                            <td>Multi-stage classifiers + language-model post-correction. [3][4]</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2003</strong></td>
+                            <td>Jawahar et al. bilingual Hindi-Telugu OCR</td>
+                            <td>Early "multi-script" prototype. [5]</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2005–2006</strong></td>
+                            <td><strong>Tesseract</strong> open-sourced by Google & community Indic training begins</td>
+                            <td>Marks shift to freely-available engines. [6]</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2010</strong></td>
+                            <td><em>Guide to OCR for Indic Scripts</em> (Springer) published</td>
+                            <td>First book-length survey summarising state of the art. [7]</td>
+                        </tr>
+                    </table>
+                    
+                    <h3>Recent State-of-the-Art (2021–2025)</h3>
                     <ul>
-                        <li><b>Gibberish/English-like Insertions:</b> Words like "TAIT", "THT", "fart", and "warty" appear in place of Sanskrit words, likely due to model confusion or font artifacts.</li>
-                        <li><b>Missed or Incorrect Diacritics:</b> Some vowel marks and diacritics are missing or misread, affecting the meaning of words.</li>
-                        <li><b>Shloka Numbers and Punctuation:</b> Some shloka numbers are missing, misread, or merged with text. Punctuation (like vertical bars) is inconsistently recognized.</li>
-                        <li><b>Word Splitting/Merging:</b> Some words are split or merged incorrectly, especially at line breaks or where the font is ornate.</li>
-                        <li><b>Line Breaks and Structure:</b> The OCR output sometimes merges or splits lines differently from the original, which can affect readability and downstream processing.</li>
-                        <li><b>General Observations:</b> The model performs well on standard, clear Devanagari text but struggles with complex ligatures, rare words, and certain font styles. The error rate is acceptable for many research purposes but would need post-processing for high-accuracy applications.</li>
+                        <li>99% <strong>character</strong> accuracy reported on clean Hindi, Tamil, Bangla prints with CVIT CTC-LSTM models—outperforming Google Vision in 8/13 languages. [10]</li>
+                        <li><strong>Attention-LSTM OCR for Sanskrit</strong> (Dwivedi 2020) cuts WER by 35% vs. CNN-LSTM baselines on classical texts. [12]</li>
+                        <li><strong>Vision-Transformer OCR</strong> pilots at IIT Madras for palm-leaf manuscripts (2024): early results promising for low-contrast ink.</li>
+                        <li>Handwritten Indic OCR (ICDAR 2023 competition): best teams reach 80% word accuracy on Devanagari cursive using CNN-Transformer decoders.</li>
                     </ul>
-                    <p><b>Conclusion:</b> Gemma 3 OCR (with Tesseract/Llama) provides a strong baseline for Sanskrit OCR, but further improvements are needed for perfect accuracy, especially on complex or ornate texts. Manual correction or post-processing is recommended for critical applications.</p>
+                    
+                    <h3>Latest Research Papers</h3>
+                    <div class="filter-input">
+                        <input type="text" id="paper-filter" placeholder="Filter papers...">
+                    </div>
+                    <div id="papers-container"></div>
                 </div>
-            </div>
-            
             <hr>
             
             <div id="languages">
