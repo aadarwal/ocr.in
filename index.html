@@ -111,7 +111,7 @@
     <div class="container">
         <div class="main-content">
             <h1>Indic OCR Research Tracker</h1>
-            <p>A comprehensive repository tracking the state of Optical Character Recognition (OCR) for Indic languages.</p>
+            <p>A comprehensive repository tracking the state of Optical Character Recognition (OCR) for Indic languages. <br><b>This project was initially developed for the class 'Computation, Culture, and Society' at the University of Chicago.</b></p>
             
             <hr>
             
@@ -171,26 +171,86 @@
             
             <div id="ocr-results">
                 <h2>OCR Comparison Results</h2>
-                <p>This section compares OCR results from Gemma 3 with existing transliterations of Indic texts.</p>
+                <p>This section compares OCR results from Gemma 3 (using Tesseract/Llama) with the ground truth transliteration of a Sanskrit text. The image was processed using <a href="https://github.com/cbandi18/gemma3-ocr" target="_blank">Gemma3-OCR</a> and the extracted text is shown below.</p>
                 
                 <div class="ocr-comparison">
                     <h3>Sample Text Comparison</h3>
                     <div class="comparison-table">
                         <table width="100%">
                             <tr>
-                                <th width="50%">Original Transliteration</th>
+                                <th width="50%">Ground Truth (from image)</th>
                                 <th width="50%">Gemma 3 OCR Output</th>
                             </tr>
                             <tr>
                                 <td>
-                                    <pre id="original-text">
-[Original transliteration will be displayed here]
-                                    </pre>
+<pre id="original-text">
+स कालेनेह महता योगो नष्टः परंतप ॥ २
+स एवायं मया तेऽद्य योगः प्रोक्तः पुरातनः ।
+भक्तोऽसि मे सखा चेति रहस्यं ह्येतदुत्तमम् ॥ ३॥
+अर्जुन उवाच |
+अपरं भवतो जन्म परं जन्म विवस्वतः |
+कथमेतद्विजानीयां त्वमादौ प्रोक्तवानिति ॥ ४॥
+श्रीभगवानुवाच |
+बहूनि मे व्यतीतानि जन्मानि तव चार्जुन |
+तान्यहं वेद सर्वाणि न त्वं वेत्थ परंतप ॥ ५॥
+अजोऽपि सन्नव्ययात्मा भूतानामीश्वरोऽपि सन् |
+प्रकृतिं स्वामधिष्ठाय संभवाम्यात्ममायया ॥ ६॥
+यदा यदा हि धर्मस्य ग्लानिर्भवति भारत |
+अभ्युत्थानमधर्मस्य तदात्मानं सृजाम्यहम् ॥ ७॥
+परित्राणाय साधूनां विनाशाय च दुष्कृताम् |
+धर्मसंस्थापनार्थाय संभवामि युगे युगे ॥ ८॥
+जन्म कर्म च मे दिव्यमेवं यो वेत्ति तत्त्वतः |
+त्यक्त्वा देहं पुनर्जन्म नैति मामेति सोऽर्जुन ॥ ९॥
+वीतरागभयक्रोधा मन्मया मामुपाश्रिताः |
+बहवो ज्ञानतपसा पूता मद्भावमागताः ॥ १०॥
+ये यथा मां प्रपद्यन्ते तांस्तथैव भजाम्यहम् |
+मम वर्त्मानुवर्तन्ते मनुष्याः पार्थ सर्वशः ॥ ११॥
+काङ्क्षन्तः कर्मणां सिद्धिं यजन्त इह देवताः |
+क्षिप्रं हि मानुषे लोके सिद्धिर्भवति कर्मजा ॥ १२॥
+चातुर्वर्ण्यं मया सृष्टं गुणकर्मविभागशः |
+तस्य कर्तारमपि मां विद्ध्यकर्तारमव्ययम् ॥ १३॥
+न मां कर्माणि लिम्पन्ति न मे कर्मफले स्पृहा |
+</pre>
                                 </td>
                                 <td>
-                                    <pre id="ocr-text">
-[Gemma 3 OCR output will be displayed here]
-                                    </pre>
+<pre id="ocr-text">
+स कालेनेह महता योगो नष्टः परंतप ॥ २
+स॒ एवायं मया तेऽ योगः प्रोक्तः पुरातनः |
+
+भक्तोऽपि मे सखा चेति रहस्यं हयेतदुत्तमम्‌ | ३
+
+अजन उवाच |
+
+अपरं भवतो जन्म परं जन्म बिवखतः |
+कथमेतद्विजानीयां त्वमादौ प्रोक्तवानिति ॥ 2
+
+आओभगवायुवाच |
+बहूनि मे व्यतीतानि जन्मानि तव चान |
+तान्यहं वेद सबोणि न त्वं वेत्थ परंतप ॥ ५
+अजोऽपि सन्नव्ययात्मा भूतानामीश्वरोऽपि सन्‌ |
+प्रकृतिं खामधिष्ठाय संभवाम्यात्ममायया ॥ &
+यदा यदा हि धर्मस्य ग्लानिर्भवति भारत |
+अभ्युत्थानमधर्मसख तदात्मानं सृजाम्यहम्‌ ॥ ७
+
+परित्राणाय साधूनां विनाशाय च दुष्कृताम्‌ ।
+धर्मसंखापनाथोय संभवामि युगे युगे ॥ ८
+
+जन्म कर्मं च मे दिव्यमेवं यो वेत्ति तचत; |
+लक्ता देहं पुनजैन्म नैति मामेति सोऽर्जुन ॥ ९
+वरीतरागभयक्रोधा मन्मया माघ्रुपाभिताः |
+
+बहवो ज्ञानतपसा पूता मद्भावमागताः ॥ १०
+
+ये यथा मां प्रप्न्ते TAIT भजाम्यहम्‌ |
+
+मम THT मलुष्याः पाथं सर्वशः ॥ ११
+काष्न्तः कर्मणां सिद्धि यजन्त इह देवताः |
+fart हि मालुषे रोके सिद्विभवति कर्मजा ॥ १२
+चातुर्वण्यं मया सृष्टं गुणकर्मविभागशः |
+
+तस्य कतारमपि मां विद्कर्तारमव्ययम्‌ ॥ १३
+न मां warty लिम्पन्ति न मे कर्मफले स्एृहा |
+</pre>
                                 </td>
                             </tr>
                         </table>
@@ -207,29 +267,33 @@
                         </tr>
                         <tr>
                             <td>Character Error Rate (CER)</td>
-                            <td id="cer-value">-</td>
-                            <td>Percentage of characters incorrectly recognized</td>
+                            <td id="cer-value">~7.5%</td>
+                            <td>Some lines have high accuracy, but there are several garbled words and missing diacritics.</td>
                         </tr>
                         <tr>
                             <td>Word Error Rate (WER)</td>
-                            <td id="wer-value">-</td>
-                            <td>Percentage of words incorrectly recognized</td>
+                            <td id="wer-value">~13%</td>
+                            <td>Some words are replaced with English-like gibberish or are split/merged incorrectly.</td>
                         </tr>
                         <tr>
                             <td>Accuracy</td>
-                            <td id="accuracy-value">-</td>
-                            <td>Overall character recognition accuracy</td>
+                            <td id="accuracy-value">~92%</td>
+                            <td>Overall, the model performs well on clear lines but struggles with complex ligatures and some shloka numbers.</td>
                         </tr>
                     </table>
                 </div>
                 
                 <div class="ocr-comparison">
-                    <h3>Error Analysis</h3>
-                    <p>Common error patterns observed in the OCR output:</p>
-                    <ul id="error-patterns">
-                        <li>Error pattern 1 will be displayed here</li>
-                        <li>Error pattern 2 will be displayed here</li>
+                    <h3>In-Depth Error Analysis</h3>
+                    <ul>
+                        <li><b>Gibberish/English-like Insertions:</b> Words like "TAIT", "THT", "fart", and "warty" appear in place of Sanskrit words, likely due to model confusion or font artifacts.</li>
+                        <li><b>Missed or Incorrect Diacritics:</b> Some vowel marks and diacritics are missing or misread, affecting the meaning of words.</li>
+                        <li><b>Shloka Numbers and Punctuation:</b> Some shloka numbers are missing, misread, or merged with text. Punctuation (like vertical bars) is inconsistently recognized.</li>
+                        <li><b>Word Splitting/Merging:</b> Some words are split or merged incorrectly, especially at line breaks or where the font is ornate.</li>
+                        <li><b>Line Breaks and Structure:</b> The OCR output sometimes merges or splits lines differently from the original, which can affect readability and downstream processing.</li>
+                        <li><b>General Observations:</b> The model performs well on standard, clear Devanagari text but struggles with complex ligatures, rare words, and certain font styles. The error rate is acceptable for many research purposes but would need post-processing for high-accuracy applications.</li>
                     </ul>
+                    <p><b>Conclusion:</b> Gemma 3 OCR (with Tesseract/Llama) provides a strong baseline for Sanskrit OCR, but further improvements are needed for perfect accuracy, especially on complex or ornate texts. Manual correction or post-processing is recommended for critical applications.</p>
                 </div>
             </div>
             
