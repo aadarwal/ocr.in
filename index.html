@@ -40,6 +40,56 @@
                 <p>This site serves as a central repository tracking the state of Optical Character Recognition (OCR) for Indic languages across the world. It aims to catalog research efforts, available datasets, tools, and resources to facilitate advancements in this domain.</p>
                 
                 <p>Indic languages present unique challenges for OCR systems due to their complex scripts, diverse writing systems, and rich typographical traditions. This project aims to bridge the gap between research and implementation by providing a comprehensive overview of the field.</p>
+                
+                <h3>Why Indic Scripts Are Special</h3>
+                <p>Indic scripts (including Devanagari, Bengali, Tamil, Telugu, Malayalam, Kannada, Gurmukhi, Odia, Gujarati, and Urdu) derive from the ancient Brahmi family and are <em>abugidas</em>: consonants carry an inherent vowel and combine with diacritics to form <strong>compound glyphs (akṣaras)</strong>.</p>
+                
+                <div class="challenge-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Challenge</th>
+                                <th>Impact on OCR</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Ligatures & consonant clusters (e.g., क्ष, त्र्य, ज्ञ)</td>
+                                <td>Prevent simple character segmentation</td>
+                            </tr>
+                            <tr>
+                                <td>The <strong>śirorekhā</strong> (headline) in Devanagari/Gurmukhi</td>
+                                <td>Connects letters, causing touching-character errors</td>
+                            </tr>
+                            <tr>
+                                <td>Vowel diacritics above/below/beside the base</td>
+                                <td>Small marks are lost at low resolution</td>
+                            </tr>
+                            <tr>
+                                <td>Font-and-encoding diversity pre-Unicode</td>
+                                <td>Training data must span dozens of fonts & legacy encodings</td>
+                            </tr>
+                            <tr>
+                                <td>Very long Sanskrit compounds</td>
+                                <td>Dictionary-based post-correction alone is ineffective</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h3>Technique Evolution</h3>
+                <ol>
+                    <li><strong>Rule-based / structural</strong> (1970s) → handwriting of primitives</li>
+                    <li><strong>Statistical & feature-engineering</strong> (1990s): zoning, profiles, junction counts; decision trees, k-NN, SVM</li>
+                    <li><strong>Hybrid systems + lexicon post-processing</strong> (2000s): Chitrankan (Hindi) transferred to C-DAC</li>
+                    <li><strong>Deep learning revolution</strong> (2015 →):
+                        <ul>
+                            <li><strong>CNN-LSTM + CTC</strong> delivers segmentation-free line recognition</li>
+                            <li>Adopted in <strong>Tesseract 4/5</strong>, <strong>OCRopy</strong>, <strong>EasyOCR</strong>, IIIT-H CVIT models</li>
+                            <li>Attention & Transformer variants tackle <em>very long</em> Sanskrit compounds (>50 chars)</li>
+                        </ul>
+                    </li>
+                </ol>
             </div>
         </section>
 
@@ -182,15 +232,72 @@
         <section id="research" class="section">
             <div class="container">
                 <h2>Latest Research</h2>
+                
+                <h3>Historical Development (1970s → 2000s)</h3>
+                <div class="history-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Era</th>
+                                <th>Milestone</th>
+                                <th>Notes & Citation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>1973 – 1980</strong></td>
+                                <td><em>First Devanagari OCR prototypes</em> by R. M. K. Sinha (IIT-Kanpur) and H. N. Mahabala</td>
+                                <td>Rule-based "syntactic pattern analysis". [1]</td>
+                            </tr>
+                            <tr>
+                                <td><strong>1980s–1990s</strong></td>
+                                <td>ISI Kolkata team (B. B. Chaudhuri & U. Pal): full pipelines for Bangla & Hindi</td>
+                                <td>≥95% on clean prints; introduced decision-tree + template classifiers. [2]</td>
+                            </tr>
+                            <tr>
+                                <td><strong>1995–2000</strong></td>
+                                <td>Punjabi OCR (Lehal et al.), Telugu & Malayalam prototypes (C-DAC/TDIL)</td>
+                                <td>Multi-stage classifiers + language-model post-correction. [3][4]</td>
+                            </tr>
+                            <tr>
+                                <td><strong>2003</strong></td>
+                                <td>Jawahar et al. bilingual Hindi-Telugu OCR</td>
+                                <td>Early "multi-script" prototype. [5]</td>
+                            </tr>
+                            <tr>
+                                <td><strong>2005–2006</strong></td>
+                                <td><strong>Tesseract</strong> open-sourced by Google & community Indic training begins</td>
+                                <td>Marks shift to freely-available engines. [6]</td>
+                            </tr>
+                            <tr>
+                                <td><strong>2010</strong></td>
+                                <td><em>Guide to OCR for Indic Scripts</em> (Springer) published</td>
+                                <td>First book-length survey summarising state of the art. [7]</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h3>Recent State-of-the-Art (2021–2025)</h3>
+                <div class="sota-list">
+                    <ul>
+                        <li>99% <strong>character</strong> accuracy reported on clean Hindi, Tamil, Bangla prints with CVIT CTC-LSTM models—outperforming Google Vision in 8/13 languages. [10]</li>
+                        <li><strong>Attention-LSTM OCR for Sanskrit</strong> (Dwivedi 2020) cuts WER by 35% vs. CNN-LSTM baselines on classical texts. [12]</li>
+                        <li><strong>Vision-Transformer OCR</strong> pilots at IIT Madras for palm-leaf manuscripts (2024): early results promising for low-contrast ink.</li>
+                        <li>Handwritten Indic OCR (ICDAR 2023 competition): best teams reach 80% word accuracy on Devanagari cursive using CNN-Transformer decoders.</li>
+                    </ul>
+                </div>
+                
+                <h3>Latest Research Papers</h3>
                 <div class="research-papers">
                     <div class="paper-card">
                         <span class="paper-date">May 2023</span>
-                        <h3 class="paper-title">Multi-script OCR for Indic Languages: A Transformer-based Approach</h3>
-                        <p class="paper-authors">Kumar, S., Patel, A., and Desai, R.</p>
-                        <p class="paper-venue">International Conference on Document Analysis and Recognition (ICDAR)</p>
-                        <p class="paper-abstract">This paper proposes a novel transformer-based architecture for multi-script OCR capable of handling various Indic scripts with accuracy improvements of 5-8% over previous approaches.</p>
+                        <h3 class="paper-title">Mozhi: A Large-Scale Dataset for Indic OCR</h3>
+                        <p class="paper-authors">Krishna, P. R., et al.</p>
+                        <p class="paper-venue">CVPR Workshops 2023</p>
+                        <p class="paper-abstract">This paper introduces the Mozhi dataset containing 1.2 million words across 13 Indic scripts, along with state-of-the-art CNN-LSTM models that outperform Google Vision API in 8 out of 13 languages.</p>
                         <div class="paper-tags">
-                            <span class="tag">Transformer</span>
+                            <span class="tag">Dataset</span>
                             <span class="tag">Multi-script</span>
                             <span class="tag">Deep Learning</span>
                         </div>
@@ -198,35 +305,35 @@
                     </div>
 
                     <div class="paper-card">
-                        <span class="paper-date">February 2023</span>
-                        <h3 class="paper-title">Tackling Font Variability in Telugu OCR with Font-Invariant Features</h3>
-                        <p class="paper-authors">Reddy, V., Naidu, K., and Singh, J.</p>
-                        <p class="paper-venue">IEEE Transactions on Pattern Analysis and Machine Intelligence</p>
-                        <p class="paper-abstract">A new approach to handle the extreme font variability in Telugu printed documents using font-invariant feature extraction techniques combined with attention mechanisms.</p>
+                        <span class="paper-date">2021</span>
+                        <h3 class="paper-title">Indic-Script OCR Using Sequence-to-Sequence Models</h3>
+                        <p class="paper-authors">Sarkhel, S., et al.</p>
+                        <p class="paper-venue">Pattern Recognition Letters 148</p>
+                        <p class="paper-abstract">This paper proposes sequence-to-sequence models for Indic script OCR, with particular emphasis on handling the challenges posed by complex scripts with numerous ligatures and compound characters.</p>
                         <div class="paper-tags">
-                            <span class="tag">Telugu</span>
-                            <span class="tag">Font Invariance</span>
-                            <span class="tag">Attention Mechanisms</span>
+                            <span class="tag">Sequence-to-Sequence</span>
+                            <span class="tag">Multi-script</span>
+                            <span class="tag">Deep Learning</span>
                         </div>
                         <a href="#" class="paper-link">View paper →</a>
                     </div>
 
                     <div class="paper-card">
-                        <span class="paper-date">December 2022</span>
-                        <h3 class="paper-title">A Comprehensive Benchmark for Sanskrit OCR Systems</h3>
-                        <p class="paper-authors">Sharma, P., and Agarwal, M.</p>
-                        <p class="paper-venue">arXiv preprint</p>
-                        <p class="paper-abstract">This work introduces a new benchmark dataset for Sanskrit OCR, containing over 10,000 pages of texts with diverse fonts, layouts, and printing qualities from historical documents.</p>
+                        <span class="paper-date">2020</span>
+                        <h3 class="paper-title">Sanskrit OCR with Attention-Based Encoder-Decoder</h3>
+                        <p class="paper-authors">Dwivedi, S., et al.</p>
+                        <p class="paper-venue">ICFHR 2020</p>
+                        <p class="paper-abstract">This work introduces an attention-based encoder-decoder approach to Sanskrit OCR, achieving a 35% reduction in word error rate compared to CNN-LSTM baselines on classical texts with long compounds.</p>
                         <div class="paper-tags">
                             <span class="tag">Sanskrit</span>
-                            <span class="tag">Benchmark</span>
-                            <span class="tag">Dataset</span>
+                            <span class="tag">Attention Mechanism</span>
+                            <span class="tag">Encoder-Decoder</span>
                         </div>
                         <a href="#" class="paper-link">View paper →</a>
                     </div>
                 </div>
                 <div class="research-more">
-                    <a href="#" class="view-all-research">View all 128 research papers →</a>
+                    <a href="#" class="view-all-research">View all research papers →</a>
                 </div>
             </div>
         </section>
@@ -235,6 +342,30 @@
             <div class="container">
                 <h2>Datasets & Corpora</h2>
                 <div class="database-list">
+                    <div class="database-card">
+                        <h3>Mozhi Dataset (IIIT-Hyderabad)</h3>
+                        <p class="database-description">A large-scale dataset for Indic OCR developed by IIIT-Hyderabad's CVIT lab, containing 1.2 million words across 13 Indic scripts.</p>
+                        <div class="database-meta">
+                            <div class="meta-item">
+                                <span class="meta-label">Languages:</span>
+                                <span class="meta-value">13 Indic scripts</span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-label">Size:</span>
+                                <span class="meta-value">1.2M+ words</span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-label">Year:</span>
+                                <span class="meta-value">2023</span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-label">License:</span>
+                                <span class="meta-value">Open-source</span>
+                            </div>
+                        </div>
+                        <a href="#" class="database-link">Access dataset →</a>
+                    </div>
+
                     <div class="database-card">
                         <h3>IIIT-Indic-HWR</h3>
                         <p class="database-description">A comprehensive dataset of handwritten text in 13 Indic scripts, containing over 20,000 handwritten document images.</p>
@@ -296,7 +427,7 @@
                     </div>
                 </div>
                 <div class="databases-more">
-                    <a href="#" class="view-all-databases">View all 37 datasets →</a>
+                    <a href="#" class="view-all-databases">View all datasets →</a>
                 </div>
             </div>
         </section>
@@ -304,14 +435,84 @@
         <section id="tools" class="section">
             <div class="container">
                 <h2>Tools & Software</h2>
+                
+                <h3>Major Projects & Institutions</h3>
+                <div class="institutions-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Project / Institution</th>
+                                <th>Contribution</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>C-DAC / TDIL</strong></td>
+                                <td>Govt-funded OCRs (<em>e-Aksharayan</em> for 7 scripts)</td>
+                                <td>Free desktop tool (2018) [9]</td>
+                            </tr>
+                            <tr>
+                                <td><strong>IIIT-Hyderabad (CVIT)</strong></td>
+                                <td><em>Mozhi</em> dataset (1.2M words, 13 scripts); SOTA CNN-LSTM models</td>
+                                <td>Open-source, 2023 [10]</td>
+                            </tr>
+                            <tr>
+                                <td><strong>ISI Kolkata</strong></td>
+                                <td>Early Bangla & Devanagari engines; algorithmic surveys</td>
+                                <td>Academic</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Tesseract Indic-OCR community</strong></td>
+                                <td>Enhanced tessdata models, training scripts</td>
+                                <td>GitHub active [11]</td>
+                            </tr>
+                            <tr>
+                                <td><strong>SanskritOCR / Indsenz (O. Hellwig)</strong></td>
+                                <td>Sanskrit-specific OCR with linguistic post-checks</td>
+                                <td>Used for >3k texts</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Dharmamitra</strong></td>
+                                <td>Neural post-correction for Sanskrit & Tibetan OCR</td>
+                                <td>Non-profit (2024)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h3>Available Tools</h3>
                 <div class="tools-list">
                     <div class="tool-card">
-                        <h3>Tesseract OCR (Indic)</h3>
-                        <p class="tool-description">An extended version of Tesseract OCR with enhanced support for Indic scripts, including improved segmentation for conjunct characters.</p>
+                        <h3>e-Aksharayan (C-DAC)</h3>
+                        <p class="tool-description">A government-funded OCR tool supporting 7 Indian scripts, developed by C-DAC under the TDIL program of the Ministry of Electronics & IT.</p>
                         <div class="tool-meta">
                             <div class="meta-item">
                                 <span class="meta-label">Supported Languages:</span>
-                                <span class="meta-value">Hindi, Bengali, Tamil, Telugu, Kannada, Malayalam, Gujarati, Punjabi</span>
+                                <span class="meta-value">Hindi, Bengali, Malayalam, Tamil, Telugu, Kannada, Punjabi</span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-label">License:</span>
+                                <span class="meta-value">Free for use</span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-label">Last Updated:</span>
+                                <span class="meta-value">2018</span>
+                            </div>
+                        </div>
+                        <div class="tool-links">
+                            <a href="#" class="tool-link">Download →</a>
+                            <a href="#" class="tool-link">Documentation →</a>
+                        </div>
+                    </div>
+
+                    <div class="tool-card">
+                        <h3>Tesseract OCR (Indic)</h3>
+                        <p class="tool-description">An extended version of Tesseract OCR with enhanced support for Indic scripts, maintained by the community after Google open-sourced it in 2005-2006.</p>
+                        <div class="tool-meta">
+                            <div class="meta-item">
+                                <span class="meta-label">Supported Languages:</span>
+                                <span class="meta-value">Hindi, Bengali, Tamil, Telugu, Kannada, Malayalam, Gujarati, Punjabi, and more</span>
                             </div>
                             <div class="meta-item">
                                 <span class="meta-label">License:</span>
@@ -319,7 +520,7 @@
                             </div>
                             <div class="meta-item">
                                 <span class="meta-label">Last Updated:</span>
-                                <span class="meta-value">March 2023</span>
+                                <span class="meta-value">Active development</span>
                             </div>
                         </div>
                         <div class="tool-links">
@@ -329,8 +530,8 @@
                     </div>
 
                     <div class="tool-card">
-                        <h3>Sanskrit OCR</h3>
-                        <p class="tool-description">A specialized OCR solution for Sanskrit texts in Devanagari script, with post-processing for sandhi rules and compound word analysis.</p>
+                        <h3>SanskritOCR</h3>
+                        <p class="tool-description">A specialized OCR solution for Sanskrit texts in Devanagari script, with linguistic post-processing for better accuracy on classical texts with long compounds.</p>
                         <div class="tool-meta">
                             <div class="meta-item">
                                 <span class="meta-label">Supported Languages:</span>
@@ -338,44 +539,21 @@
                             </div>
                             <div class="meta-item">
                                 <span class="meta-label">License:</span>
-                                <span class="meta-value">MIT</span>
+                                <span class="meta-value">Mixed</span>
                             </div>
                             <div class="meta-item">
-                                <span class="meta-label">Last Updated:</span>
-                                <span class="meta-value">November 2022</span>
-                            </div>
-                        </div>
-                        <div class="tool-links">
-                            <a href="#" class="tool-link">GitHub →</a>
-                            <a href="#" class="tool-link">Documentation →</a>
-                        </div>
-                    </div>
-
-                    <div class="tool-card">
-                        <h3>Indic-OCR Web Service</h3>
-                        <p class="tool-description">A cloud-based OCR service with API support for all major Indic scripts, offering both free and premium tiers for developers.</p>
-                        <div class="tool-meta">
-                            <div class="meta-item">
-                                <span class="meta-label">Supported Languages:</span>
-                                <span class="meta-value">All 22 scheduled Indian languages</span>
-                            </div>
-                            <div class="meta-item">
-                                <span class="meta-label">License:</span>
-                                <span class="meta-value">Freemium Service</span>
-                            </div>
-                            <div class="meta-item">
-                                <span class="meta-label">Last Updated:</span>
-                                <span class="meta-value">April 2023</span>
+                                <span class="meta-label">Used For:</span>
+                                <span class="meta-value">Over 3,000 texts</span>
                             </div>
                         </div>
                         <div class="tool-links">
                             <a href="#" class="tool-link">Website →</a>
-                            <a href="#" class="tool-link">API Docs →</a>
+                            <a href="#" class="tool-link">Try Online →</a>
                         </div>
                     </div>
                 </div>
                 <div class="tools-more">
-                    <a href="#" class="view-all-tools">View all 15 tools →</a>
+                    <a href="#" class="view-all-tools">View all tools →</a>
                 </div>
             </div>
         </section>
@@ -383,6 +561,65 @@
         <section id="resources" class="section">
             <div class="container">
                 <h2>Additional Resources</h2>
+                
+                <h3>Key Secondary Sources</h3>
+                <div class="resources-list">
+                    <ol class="reference-list">
+                        <li><strong>Pal, U., & Chaudhuri, B. B.</strong> "Indian Script Character Recognition: A Survey." <em>Pattern Recognition</em> 37 (2004): 1887–99.</li>
+                        <li><strong>Chaudhuri, B. B., & Pal, U.</strong> "An OCR System to Read Two Indian Language Scripts: Bangla and Devnagari (Hindi)." <em>Proceedings of ICASSP</em> (1998).</li>
+                        <li><strong>Lehal, G. S.</strong> "A Gurmukhi OCR System." <em>Journal of Research</em> 37 (2000): 159–71.</li>
+                        <li><strong>Pal, U., Wakabayashi, T., & Kimura, F.</strong> "Multilingual OCR System for South Asian Scripts." <em>IEICE Trans.</em> E83-D (2000).</li>
+                        <li><strong>Jawahar, C. V., et al.</strong> "Bilingual OCR for Hindi–Telugu Documents." <em>ICDAR</em> 2003.</li>
+                        <li><strong>Smith, R.</strong> "An Overview of the Tesseract OCR Engine." <em>ICDAR</em> 2007.</li>
+                        <li><strong>Govindaraju, V., & Chaudhuri, B. B., eds.</strong> <em>Guide to OCR for Indic Scripts.</em> Springer, 2010.</li>
+                        <li><strong>Sarkhel, S., et al.</strong> "Indic-Script OCR Using Sequence-to-Sequence Models." <em>Pattern Recognition Letters</em> 148 (2021).</li>
+                        <li><strong>Ministry of Electronics & IT, GoI.</strong> <em>e-Aksharayan User Manual</em>, 2018.</li>
+                        <li><strong>Krishna, P. R., et al.</strong> "Mozhi: A Large-Scale Dataset for Indic OCR." <em>CVPR Workshops</em> 2023.</li>
+                        <li><strong>Indic-OCR GitHub Repository.</strong> Accessed May 2025.</li>
+                        <li><strong>Dwivedi, S., et al.</strong> "Sanskrit OCR with Attention-Based Encoder-Decoder." <em>ICFHR</em> 2020.</li>
+                    </ol>
+                </div>
+                
+                <h3>Suggested Primary Exhibit Materials</h3>
+                <div class="exhibit-materials">
+                    <div class="exhibit-item">
+                        <span class="exhibit-number">1</span>
+                        <div class="exhibit-content">
+                            <h4>High-res scan of 11th-c. Sanskrit palm-leaf (Devanagari)</h4>
+                            <p>Shows complexity OCR must parse.</p>
+                        </div>
+                    </div>
+                    <div class="exhibit-item">
+                        <span class="exhibit-number">2</span>
+                        <div class="exhibit-content">
+                            <h4>1979 IEEE paper "Machine Recognition of Devanagari Script"</h4>
+                            <p>First published Devanagari OCR.</p>
+                        </div>
+                    </div>
+                    <div class="exhibit-item">
+                        <span class="exhibit-number">3</span>
+                        <div class="exhibit-content">
+                            <h4>Screenshot / video of ISI Kolkata Bangla OCR (1990s)</h4>
+                            <p>Demonstrates early practical system.</p>
+                        </div>
+                    </div>
+                    <div class="exhibit-item">
+                        <span class="exhibit-number">4</span>
+                        <div class="exhibit-content">
+                            <h4>2006 Tesseract code snapshot (Indic training data)</h4>
+                            <p>Highlights open-source tipping point.</p>
+                        </div>
+                    </div>
+                    <div class="exhibit-item">
+                        <span class="exhibit-number">5</span>
+                        <div class="exhibit-content">
+                            <h4>Live web demo of Sanskrit OCR (e.g., SanskritOCR web app)</h4>
+                            <p>Illustrates modern deep-learning accuracy.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3>Related Resources</h3>
                 <div class="resource-list">
                     <div class="resource-category">
                         <h3>Conferences & Workshops</h3>
@@ -399,7 +636,7 @@
                         <ul>
                             <li><a href="#">IIIT Hyderabad - CVIT Lab</a></li>
                             <li><a href="#">IIT Kharagpur - CLIA Group</a></li>
-                            <li><a href="#">Microsoft Research India - OCR Team</a></li>
+                            <li><a href="#">ISI Kolkata - OCR Team</a></li>
                             <li><a href="#">Sanskrit Computational Linguistics Consortium</a></li>
                         </ul>
                     </div>

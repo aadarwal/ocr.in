@@ -603,4 +603,130 @@ footer {
         justify-content: center;
         gap: 1rem;
     }
+}
+
+/* Tables */
+.challenge-table, .history-table, .institutions-table {
+    width: 100%;
+    margin: 2rem 0;
+    border-collapse: collapse;
+    overflow-x: auto;
+    display: block;
+}
+
+.challenge-table table, .history-table table, .institutions-table table {
+    width: 100%;
+    min-width: 600px;
+}
+
+.challenge-table th, .history-table th, .institutions-table th,
+.challenge-table td, .history-table td, .institutions-table td {
+    padding: 0.8rem 1rem;
+    text-align: left;
+    border: 1px solid var(--border-color);
+}
+
+.challenge-table th, .history-table th, .institutions-table th {
+    background-color: var(--light-bg);
+    font-weight: 600;
+    font-family: var(--secondary-font);
+    font-size: 0.95rem;
+}
+
+.challenge-table td, .history-table td, .institutions-table td {
+    font-size: 0.95rem;
+    vertical-align: top;
+}
+
+.challenge-table tr:nth-child(even),
+.history-table tr:nth-child(even),
+.institutions-table tr:nth-child(even) {
+    background-color: #fafafa;
+}
+
+/* List styles */
+.sota-list ul {
+    padding-left: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.sota-list li {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.reference-list {
+    padding-left: 1.5rem;
+    margin: 1.5rem 0;
+    counter-reset: item;
+    list-style-type: none;
+}
+
+.reference-list li {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+    position: relative;
+    padding-left: 2rem;
+}
+
+.reference-list li:before {
+    content: "[" counter(item) "]";
+    counter-increment: item;
+    position: absolute;
+    left: 0;
+    font-weight: 600;
+    color: var(--hover-color);
+}
+
+/* Exhibit materials */
+.exhibit-materials {
+    margin: 2rem 0;
+}
+
+.exhibit-item {
+    display: flex;
+    margin-bottom: 1.5rem;
+    background-color: var(--light-bg);
+    border-radius: 4px;
+    padding: 1.5rem;
+}
+
+.exhibit-number {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--hover-color);
+    margin-right: 1.5rem;
+    display: inline-block;
+    min-width: 2rem;
+    text-align: center;
+}
+
+.exhibit-content {
+    flex: 1;
+}
+
+.exhibit-content h4 {
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.exhibit-content p {
+    margin-bottom: 0;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+@media (max-width: 768px) {
+    .challenge-table, .history-table, .institutions-table {
+        overflow-x: scroll;
+    }
+    
+    .exhibit-item {
+        flex-direction: column;
+    }
+    
+    .exhibit-number {
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
 } 
