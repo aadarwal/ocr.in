@@ -96,142 +96,18 @@
         <section id="languages" class="section">
             <div class="container">
                 <h2>Languages Tracked</h2>
-                <div class="language-grid">
-                    <div class="language-card">
-                        <h3>Sanskrit</h3>
-                        <p class="language-family">Indo-Aryan</p>
-                        <p class="script">Devanagari</p>
-                        <div class="language-stats">
-                            <div class="stat">
-                                <span class="stat-value">78%</span>
-                                <span class="stat-label">OCR Accuracy</span>
-                            </div>
-                            <div class="stat">
-                                <span class="stat-value">12</span>
-                                <span class="stat-label">Research Papers</span>
-                            </div>
-                            <div class="stat">
-                                <span class="stat-value">4</span>
-                                <span class="stat-label">Datasets</span>
-                            </div>
-                        </div>
-                        <a href="#" class="language-link">View details →</a>
-                    </div>
-
-                    <div class="language-card">
-                        <h3>Hindi</h3>
-                        <p class="language-family">Indo-Aryan</p>
-                        <p class="script">Devanagari</p>
-                        <div class="language-stats">
-                            <div class="stat">
-                                <span class="stat-value">92%</span>
-                                <span class="stat-label">OCR Accuracy</span>
-                            </div>
-                            <div class="stat">
-                                <span class="stat-value">34</span>
-                                <span class="stat-label">Research Papers</span>
-                            </div>
-                            <div class="stat">
-                                <span class="stat-value">8</span>
-                                <span class="stat-label">Datasets</span>
-                            </div>
-                        </div>
-                        <a href="#" class="language-link">View details →</a>
-                    </div>
-
-                    <div class="language-card">
-                        <h3>Tamil</h3>
-                        <p class="language-family">Dravidian</p>
-                        <p class="script">Tamil</p>
-                        <div class="language-stats">
-                            <div class="stat">
-                                <span class="stat-value">87%</span>
-                                <span class="stat-label">OCR Accuracy</span>
-                            </div>
-                            <div class="stat">
-                                <span class="stat-value">24</span>
-                                <span class="stat-label">Research Papers</span>
-                            </div>
-                            <div class="stat">
-                                <span class="stat-value">5</span>
-                                <span class="stat-label">Datasets</span>
-                            </div>
-                        </div>
-                        <a href="#" class="language-link">View details →</a>
-                    </div>
-
-                    <div class="language-card">
-                        <h3>Bengali</h3>
-                        <p class="language-family">Indo-Aryan</p>
-                        <p class="script">Bengali</p>
-                        <div class="language-stats">
-                            <div class="stat">
-                                <span class="stat-value">84%</span>
-                                <span class="stat-label">OCR Accuracy</span>
-                            </div>
-                            <div class="stat">
-                                <span class="stat-value">18</span>
-                                <span class="stat-label">Research Papers</span>
-                            </div>
-                            <div class="stat">
-                                <span class="stat-value">4</span>
-                                <span class="stat-label">Datasets</span>
-                            </div>
-                        </div>
-                        <a href="#" class="language-link">View details →</a>
-                    </div>
-
-                    <div class="language-card">
-                        <h3>Telugu</h3>
-                        <p class="language-family">Dravidian</p>
-                        <p class="script">Telugu</p>
-                        <div class="language-stats">
-                            <div class="stat">
-                                <span class="stat-value">82%</span>
-                                <span class="stat-label">OCR Accuracy</span>
-                            </div>
-                            <div class="stat">
-                                <span class="stat-value">14</span>
-                                <span class="stat-label">Research Papers</span>
-                            </div>
-                            <div class="stat">
-                                <span class="stat-value">3</span>
-                                <span class="stat-label">Datasets</span>
-                            </div>
-                        </div>
-                        <a href="#" class="language-link">View details →</a>
-                    </div>
-
-                    <div class="language-card">
-                        <h3>Kannada</h3>
-                        <p class="language-family">Dravidian</p>
-                        <p class="script">Kannada</p>
-                        <div class="language-stats">
-                            <div class="stat">
-                                <span class="stat-value">80%</span>
-                                <span class="stat-label">OCR Accuracy</span>
-                            </div>
-                            <div class="stat">
-                                <span class="stat-value">12</span>
-                                <span class="stat-label">Research Papers</span>
-                            </div>
-                            <div class="stat">
-                                <span class="stat-value">3</span>
-                                <span class="stat-label">Datasets</span>
-                            </div>
-                        </div>
-                        <a href="#" class="language-link">View details →</a>
-                    </div>
+                <div class="filter-input">
+                    <input type="text" id="language-filter" placeholder="Filter languages...">
                 </div>
-                <div class="languages-more">
-                    <a href="#" class="view-all-languages">View all 22 scheduled languages →</a>
+                <div id="languages-container" class="card-grid">
+                    <!-- Cards will be dynamically populated by JavaScript -->
                 </div>
             </div>
         </section>
 
         <section id="research" class="section">
             <div class="container">
-                <h2>Latest Research</h2>
+                <h2>Research Papers</h2>
                 
                 <h3>Historical Development (1970s → 2000s)</h3>
                 <div class="history-table">
@@ -289,51 +165,11 @@
                 </div>
                 
                 <h3>Latest Research Papers</h3>
-                <div class="research-papers">
-                    <div class="paper-card">
-                        <span class="paper-date">May 2023</span>
-                        <h3 class="paper-title">Mozhi: A Large-Scale Dataset for Indic OCR</h3>
-                        <p class="paper-authors">Krishna, P. R., et al.</p>
-                        <p class="paper-venue">CVPR Workshops 2023</p>
-                        <p class="paper-abstract">This paper introduces the Mozhi dataset containing 1.2 million words across 13 Indic scripts, along with state-of-the-art CNN-LSTM models that outperform Google Vision API in 8 out of 13 languages.</p>
-                        <div class="paper-tags">
-                            <span class="tag">Dataset</span>
-                            <span class="tag">Multi-script</span>
-                            <span class="tag">Deep Learning</span>
-                        </div>
-                        <a href="#" class="paper-link">View paper →</a>
-                    </div>
-
-                    <div class="paper-card">
-                        <span class="paper-date">2021</span>
-                        <h3 class="paper-title">Indic-Script OCR Using Sequence-to-Sequence Models</h3>
-                        <p class="paper-authors">Sarkhel, S., et al.</p>
-                        <p class="paper-venue">Pattern Recognition Letters 148</p>
-                        <p class="paper-abstract">This paper proposes sequence-to-sequence models for Indic script OCR, with particular emphasis on handling the challenges posed by complex scripts with numerous ligatures and compound characters.</p>
-                        <div class="paper-tags">
-                            <span class="tag">Sequence-to-Sequence</span>
-                            <span class="tag">Multi-script</span>
-                            <span class="tag">Deep Learning</span>
-                        </div>
-                        <a href="#" class="paper-link">View paper →</a>
-                    </div>
-
-                    <div class="paper-card">
-                        <span class="paper-date">2020</span>
-                        <h3 class="paper-title">Sanskrit OCR with Attention-Based Encoder-Decoder</h3>
-                        <p class="paper-authors">Dwivedi, S., et al.</p>
-                        <p class="paper-venue">ICFHR 2020</p>
-                        <p class="paper-abstract">This work introduces an attention-based encoder-decoder approach to Sanskrit OCR, achieving a 35% reduction in word error rate compared to CNN-LSTM baselines on classical texts with long compounds.</p>
-                        <div class="paper-tags">
-                            <span class="tag">Sanskrit</span>
-                            <span class="tag">Attention Mechanism</span>
-                            <span class="tag">Encoder-Decoder</span>
-                        </div>
-                        <a href="#" class="paper-link">View paper →</a>
-                    </div>
+                <div class="filter-input">
+                    <input type="text" id="paper-filter" placeholder="Filter papers...">
                 </div>
-                <div class="research-more">
-                    <a href="#" class="view-all-research">View all research papers →</a>
+                <div id="papers-container" class="card-grid">
+                    <!-- Papers will be dynamically populated by JavaScript -->
                 </div>
             </div>
         </section>
@@ -341,93 +177,11 @@
         <section id="databases" class="section">
             <div class="container">
                 <h2>Datasets & Corpora</h2>
-                <div class="database-list">
-                    <div class="database-card">
-                        <h3>Mozhi Dataset (IIIT-Hyderabad)</h3>
-                        <p class="database-description">A large-scale dataset for Indic OCR developed by IIIT-Hyderabad's CVIT lab, containing 1.2 million words across 13 Indic scripts.</p>
-                        <div class="database-meta">
-                            <div class="meta-item">
-                                <span class="meta-label">Languages:</span>
-                                <span class="meta-value">13 Indic scripts</span>
-                            </div>
-                            <div class="meta-item">
-                                <span class="meta-label">Size:</span>
-                                <span class="meta-value">1.2M+ words</span>
-                            </div>
-                            <div class="meta-item">
-                                <span class="meta-label">Year:</span>
-                                <span class="meta-value">2023</span>
-                            </div>
-                            <div class="meta-item">
-                                <span class="meta-label">License:</span>
-                                <span class="meta-value">Open-source</span>
-                            </div>
-                        </div>
-                        <a href="#" class="database-link">Access dataset →</a>
-                    </div>
-
-                    <div class="database-card">
-                        <h3>IIIT-Indic-HWR</h3>
-                        <p class="database-description">A comprehensive dataset of handwritten text in 13 Indic scripts, containing over 20,000 handwritten document images.</p>
-                        <div class="database-meta">
-                            <div class="meta-item">
-                                <span class="meta-label">Languages:</span>
-                                <span class="meta-value">13 (Hindi, Tamil, Telugu, Malayalam, Bengali, Gujarati, Punjabi, etc.)</span>
-                            </div>
-                            <div class="meta-item">
-                                <span class="meta-label">Size:</span>
-                                <span class="meta-value">20,000+ document images</span>
-                            </div>
-                            <div class="meta-item">
-                                <span class="meta-label">License:</span>
-                                <span class="meta-value">Research-only / By request</span>
-                            </div>
-                        </div>
-                        <a href="#" class="database-link">Access dataset →</a>
-                    </div>
-
-                    <div class="database-card">
-                        <h3>Digital Corpus of Sanskrit</h3>
-                        <p class="database-description">A large digital corpus of Sanskrit texts, including digitized historical manuscripts and printed texts with ground truth.</p>
-                        <div class="database-meta">
-                            <div class="meta-item">
-                                <span class="meta-label">Languages:</span>
-                                <span class="meta-value">Sanskrit</span>
-                            </div>
-                            <div class="meta-item">
-                                <span class="meta-label">Size:</span>
-                                <span class="meta-value">12M+ words, 5,000+ texts</span>
-                            </div>
-                            <div class="meta-item">
-                                <span class="meta-label">License:</span>
-                                <span class="meta-value">CC BY-NC-SA 4.0</span>
-                            </div>
-                        </div>
-                        <a href="#" class="database-link">Access dataset →</a>
-                    </div>
-
-                    <div class="database-card">
-                        <h3>BORI Manuscript Collection</h3>
-                        <p class="database-description">Digitized collection of manuscripts from the Bhandarkar Oriental Research Institute, including rare and ancient texts in multiple Indic scripts.</p>
-                        <div class="database-meta">
-                            <div class="meta-item">
-                                <span class="meta-label">Languages:</span>
-                                <span class="meta-value">Sanskrit, Prakrit, Marathi, Hindi, Kannada</span>
-                            </div>
-                            <div class="meta-item">
-                                <span class="meta-label">Size:</span>
-                                <span class="meta-value">30,000+ manuscript pages</span>
-                            </div>
-                            <div class="meta-item">
-                                <span class="meta-label">License:</span>
-                                <span class="meta-value">Research-only / By request</span>
-                            </div>
-                        </div>
-                        <a href="#" class="database-link">Access dataset →</a>
-                    </div>
+                <div class="filter-input">
+                    <input type="text" id="dataset-filter" placeholder="Filter datasets...">
                 </div>
-                <div class="databases-more">
-                    <a href="#" class="view-all-databases">View all datasets →</a>
+                <div id="datasets-container" class="card-grid">
+                    <!-- Datasets will be dynamically populated by JavaScript -->
                 </div>
             </div>
         </section>
@@ -482,78 +236,8 @@
                 </div>
                 
                 <h3>Available Tools</h3>
-                <div class="tools-list">
-                    <div class="tool-card">
-                        <h3>e-Aksharayan (C-DAC)</h3>
-                        <p class="tool-description">A government-funded OCR tool supporting 7 Indian scripts, developed by C-DAC under the TDIL program of the Ministry of Electronics & IT.</p>
-                        <div class="tool-meta">
-                            <div class="meta-item">
-                                <span class="meta-label">Supported Languages:</span>
-                                <span class="meta-value">Hindi, Bengali, Malayalam, Tamil, Telugu, Kannada, Punjabi</span>
-                            </div>
-                            <div class="meta-item">
-                                <span class="meta-label">License:</span>
-                                <span class="meta-value">Free for use</span>
-                            </div>
-                            <div class="meta-item">
-                                <span class="meta-label">Last Updated:</span>
-                                <span class="meta-value">2018</span>
-                            </div>
-                        </div>
-                        <div class="tool-links">
-                            <a href="#" class="tool-link">Download →</a>
-                            <a href="#" class="tool-link">Documentation →</a>
-                        </div>
-                    </div>
-
-                    <div class="tool-card">
-                        <h3>Tesseract OCR (Indic)</h3>
-                        <p class="tool-description">An extended version of Tesseract OCR with enhanced support for Indic scripts, maintained by the community after Google open-sourced it in 2005-2006.</p>
-                        <div class="tool-meta">
-                            <div class="meta-item">
-                                <span class="meta-label">Supported Languages:</span>
-                                <span class="meta-value">Hindi, Bengali, Tamil, Telugu, Kannada, Malayalam, Gujarati, Punjabi, and more</span>
-                            </div>
-                            <div class="meta-item">
-                                <span class="meta-label">License:</span>
-                                <span class="meta-value">Apache 2.0</span>
-                            </div>
-                            <div class="meta-item">
-                                <span class="meta-label">Last Updated:</span>
-                                <span class="meta-value">Active development</span>
-                            </div>
-                        </div>
-                        <div class="tool-links">
-                            <a href="#" class="tool-link">GitHub →</a>
-                            <a href="#" class="tool-link">Documentation →</a>
-                        </div>
-                    </div>
-
-                    <div class="tool-card">
-                        <h3>SanskritOCR</h3>
-                        <p class="tool-description">A specialized OCR solution for Sanskrit texts in Devanagari script, with linguistic post-processing for better accuracy on classical texts with long compounds.</p>
-                        <div class="tool-meta">
-                            <div class="meta-item">
-                                <span class="meta-label">Supported Languages:</span>
-                                <span class="meta-value">Sanskrit (Devanagari)</span>
-                            </div>
-                            <div class="meta-item">
-                                <span class="meta-label">License:</span>
-                                <span class="meta-value">Mixed</span>
-                            </div>
-                            <div class="meta-item">
-                                <span class="meta-label">Used For:</span>
-                                <span class="meta-value">Over 3,000 texts</span>
-                            </div>
-                        </div>
-                        <div class="tool-links">
-                            <a href="#" class="tool-link">Website →</a>
-                            <a href="#" class="tool-link">Try Online →</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="tools-more">
-                    <a href="#" class="view-all-tools">View all tools →</a>
+                <div id="tools-container" class="card-grid">
+                    <!-- Tools will be dynamically populated by JavaScript -->
                 </div>
             </div>
         </section>
@@ -580,76 +264,9 @@
                     </ol>
                 </div>
                 
-                <h3>Suggested Primary Exhibit Materials</h3>
-                <div class="exhibit-materials">
-                    <div class="exhibit-item">
-                        <span class="exhibit-number">1</span>
-                        <div class="exhibit-content">
-                            <h4>High-res scan of 11th-c. Sanskrit palm-leaf (Devanagari)</h4>
-                            <p>Shows complexity OCR must parse.</p>
-                        </div>
-                    </div>
-                    <div class="exhibit-item">
-                        <span class="exhibit-number">2</span>
-                        <div class="exhibit-content">
-                            <h4>1979 IEEE paper "Machine Recognition of Devanagari Script"</h4>
-                            <p>First published Devanagari OCR.</p>
-                        </div>
-                    </div>
-                    <div class="exhibit-item">
-                        <span class="exhibit-number">3</span>
-                        <div class="exhibit-content">
-                            <h4>Screenshot / video of ISI Kolkata Bangla OCR (1990s)</h4>
-                            <p>Demonstrates early practical system.</p>
-                        </div>
-                    </div>
-                    <div class="exhibit-item">
-                        <span class="exhibit-number">4</span>
-                        <div class="exhibit-content">
-                            <h4>2006 Tesseract code snapshot (Indic training data)</h4>
-                            <p>Highlights open-source tipping point.</p>
-                        </div>
-                    </div>
-                    <div class="exhibit-item">
-                        <span class="exhibit-number">5</span>
-                        <div class="exhibit-content">
-                            <h4>Live web demo of Sanskrit OCR (e.g., SanskritOCR web app)</h4>
-                            <p>Illustrates modern deep-learning accuracy.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <h3>Related Resources</h3>
-                <div class="resource-list">
-                    <div class="resource-category">
-                        <h3>Conferences & Workshops</h3>
-                        <ul>
-                            <li><a href="#">International Conference on Document Analysis and Recognition (ICDAR)</a></li>
-                            <li><a href="#">Workshop on Document Analysis Systems (DAS)</a></li>
-                            <li><a href="#">International Workshop on Multilingual OCR</a></li>
-                            <li><a href="#">South Asian Languages Processing Workshop</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="resource-category">
-                        <h3>Research Groups</h3>
-                        <ul>
-                            <li><a href="#">IIIT Hyderabad - CVIT Lab</a></li>
-                            <li><a href="#">IIT Kharagpur - CLIA Group</a></li>
-                            <li><a href="#">ISI Kolkata - OCR Team</a></li>
-                            <li><a href="#">Sanskrit Computational Linguistics Consortium</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="resource-category">
-                        <h3>Tutorials & Learning</h3>
-                        <ul>
-                            <li><a href="#">Getting Started with Indic OCR Development</a></li>
-                            <li><a href="#">Challenges in Indic Script Recognition</a></li>
-                            <li><a href="#">Fine-tuning Tesseract for Indic Scripts</a></li>
-                            <li><a href="#">Post-processing Techniques for Indic OCR</a></li>
-                        </ul>
-                    </div>
+                <h3>Organizations & Initiatives</h3>
+                <div id="resources-container" class="card-grid">
+                    <!-- Resources will be dynamically populated by JavaScript -->
                 </div>
             </div>
         </section>
