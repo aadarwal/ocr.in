@@ -10,7 +10,25 @@
             margin: 40px;
             line-height: 1.4;
             background-color: #FFFFFA;
+            max-width: 1000px;
+        }
+        .container {
+            display: flex;
+        }
+        .main-content {
+            flex: 1;
             max-width: 800px;
+            margin-right: 20px;
+        }
+        .side-nav {
+            width: 150px;
+            padding-top: 30px;
+            text-align: right;
+        }
+        .side-nav a {
+            display: block;
+            margin-bottom: 10px;
+            text-decoration: none;
         }
         table {
             border-collapse: collapse;
@@ -71,230 +89,418 @@
         li {
             margin-bottom: 5px;
         }
+        .ocr-comparison {
+            margin-top: 20px;
+        }
+        .ocr-comparison pre {
+            background-color: #f5f5f5;
+            padding: 10px;
+            overflow-x: auto;
+            border: 1px solid #ddd;
+            margin-bottom: 15px;
+        }
+        .ocr-comparison .highlight {
+            background-color: #ffff99;
+        }
+        .comparison-table td {
+            vertical-align: top;
+        }
     </style>
 </head>
 <body>
-    <h1>Indic OCR Research Tracker</h1>
-    <p>A comprehensive repository tracking the state of Optical Character Recognition (OCR) for Indic languages.</p>
-    
-    <p>
-        <a href="#about">About</a> |
-        <a href="#languages">Languages</a> |
-        <a href="#papers">Research Papers</a> |
-        <a href="#datasets">Datasets</a> |
-        <a href="#tools">Tools</a> |
-        <a href="#resources">Resources</a>
-    </p>
-    
-    <hr>
-    
-    <div id="about">
-        <h2>About This Project</h2>
-        <p>This site serves as a central repository tracking the state of Optical Character Recognition (OCR) for Indic languages across the world. It aims to catalog research efforts, available datasets, tools, and resources to facilitate advancements in this domain.</p>
-        
-        <p>Indic languages present unique challenges for OCR systems due to their complex scripts, diverse writing systems, and rich typographical traditions. This project aims to bridge the gap between research and implementation by providing a comprehensive overview of the field.</p>
-        
-        <h3>Why Indic Scripts Are Special</h3>
-        <p>Indic scripts (including Devanagari, Bengali, Tamil, Telugu, Malayalam, Kannada, Gurmukhi, Odia, Gujarati, and Urdu) derive from the ancient Brahmi family and are <em>abugidas</em>: consonants carry an inherent vowel and combine with diacritics to form <strong>compound glyphs (akṣaras)</strong>.</p>
-        
-        <h3>Challenges for OCR</h3>
-        <table>
-            <tr>
-                <th>Challenge</th>
-                <th>Impact on OCR</th>
-            </tr>
-            <tr>
-                <td>Ligatures & consonant clusters (e.g., क्ष, त्र्य, ज्ञ)</td>
-                <td>Prevent simple character segmentation</td>
-            </tr>
-            <tr>
-                <td>The <strong>śirorekhā</strong> (headline) in Devanagari/Gurmukhi</td>
-                <td>Connects letters, causing touching-character errors</td>
-            </tr>
-            <tr>
-                <td>Vowel diacritics above/below/beside the base</td>
-                <td>Small marks are lost at low resolution</td>
-            </tr>
-            <tr>
-                <td>Font-and-encoding diversity pre-Unicode</td>
-                <td>Training data must span dozens of fonts & legacy encodings</td>
-            </tr>
-            <tr>
-                <td>Very long Sanskrit compounds</td>
-                <td>Dictionary-based post-correction alone is ineffective</td>
-            </tr>
-        </table>
-        
-        <h3>Technique Evolution</h3>
-        <ol>
-            <li><strong>Rule-based / structural</strong> (1970s) → handwriting of primitives</li>
-            <li><strong>Statistical & feature-engineering</strong> (1990s): zoning, profiles, junction counts; decision trees, k-NN, SVM</li>
-            <li><strong>Hybrid systems + lexicon post-processing</strong> (2000s): Chitrankan (Hindi) transferred to C-DAC</li>
-            <li><strong>Deep learning revolution</strong> (2015 →):
+    <div class="container">
+        <div class="main-content">
+            <h1>Indic OCR Research Tracker</h1>
+            <p>A comprehensive repository tracking the state of Optical Character Recognition (OCR) for Indic languages.</p>
+            
+            <hr>
+            
+            <div id="ocr-results">
+                <h2>OCR Comparison Results</h2>
+                <p>This section compares OCR results from Gemma 3 with existing transliterations of Indic texts.</p>
+                
+                <div class="ocr-comparison">
+                    <h3>Sample Text Comparison</h3>
+                    <div class="comparison-table">
+                        <table width="100%">
+                            <tr>
+                                <th width="50%">Original Transliteration</th>
+                                <th width="50%">Gemma 3 OCR Output</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <pre id="original-text">
+[Original transliteration will be displayed here]
+                                    </pre>
+                                </td>
+                                <td>
+                                    <pre id="ocr-text">
+[Gemma 3 OCR output will be displayed here]
+                                    </pre>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="ocr-comparison">
+                    <h3>Accuracy Metrics</h3>
+                    <table>
+                        <tr>
+                            <th>Metric</th>
+                            <th>Value</th>
+                            <th>Notes</th>
+                        </tr>
+                        <tr>
+                            <td>Character Error Rate (CER)</td>
+                            <td id="cer-value">-</td>
+                            <td>Percentage of characters incorrectly recognized</td>
+                        </tr>
+                        <tr>
+                            <td>Word Error Rate (WER)</td>
+                            <td id="wer-value">-</td>
+                            <td>Percentage of words incorrectly recognized</td>
+                        </tr>
+                        <tr>
+                            <td>Accuracy</td>
+                            <td id="accuracy-value">-</td>
+                            <td>Overall character recognition accuracy</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="ocr-comparison">
+                    <h3>Error Analysis</h3>
+                    <p>Common error patterns observed in the OCR output:</p>
+                    <ul id="error-patterns">
+                        <li>Error pattern 1 will be displayed here</li>
+                        <li>Error pattern 2 will be displayed here</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <hr>
+            
+            <div id="about">
+                <h2>About This Project</h2>
+                <p>This site serves as a central repository tracking the state of Optical Character Recognition (OCR) for Indic languages across the world. It aims to catalog research efforts, available datasets, tools, and resources to facilitate advancements in this domain.</p>
+                
+                <p>Indic languages present unique challenges for OCR systems due to their complex scripts, diverse writing systems, and rich typographical traditions. This project aims to bridge the gap between research and implementation by providing a comprehensive overview of the field.</p>
+                
+                <h3>Why Indic Scripts Are Special</h3>
+                <p>Indic scripts (including Devanagari, Bengali, Tamil, Telugu, Malayalam, Kannada, Gurmukhi, Odia, Gujarati, and Urdu) derive from the ancient Brahmi family and are <em>abugidas</em>: consonants carry an inherent vowel and combine with diacritics to form <strong>compound glyphs (akṣaras)</strong>.</p>
+                
+                <h3>Challenges for OCR</h3>
+                <table>
+                    <tr>
+                        <th>Challenge</th>
+                        <th>Impact on OCR</th>
+                    </tr>
+                    <tr>
+                        <td>Ligatures & consonant clusters (e.g., क्ष, त्र्य, ज्ञ)</td>
+                        <td>Prevent simple character segmentation</td>
+                    </tr>
+                    <tr>
+                        <td>The <strong>śirorekhā</strong> (headline) in Devanagari/Gurmukhi</td>
+                        <td>Connects letters, causing touching-character errors</td>
+                    </tr>
+                    <tr>
+                        <td>Vowel diacritics above/below/beside the base</td>
+                        <td>Small marks are lost at low resolution</td>
+                    </tr>
+                    <tr>
+                        <td>Font-and-encoding diversity pre-Unicode</td>
+                        <td>Training data must span dozens of fonts & legacy encodings</td>
+                    </tr>
+                    <tr>
+                        <td>Very long Sanskrit compounds</td>
+                        <td>Dictionary-based post-correction alone is ineffective</td>
+                    </tr>
+                </table>
+                
+                <h3>Technique Evolution</h3>
+                <ol>
+                    <li><strong>Rule-based / structural</strong> (1970s) → handwriting of primitives</li>
+                    <li><strong>Statistical & feature-engineering</strong> (1990s): zoning, profiles, junction counts; decision trees, k-NN, SVM</li>
+                    <li><strong>Hybrid systems + lexicon post-processing</strong> (2000s): Chitrankan (Hindi) transferred to C-DAC</li>
+                    <li><strong>Deep learning revolution</strong> (2015 →):
+                        <ul>
+                            <li><strong>CNN-LSTM + CTC</strong> delivers segmentation-free line recognition</li>
+                            <li>Adopted in <strong>Tesseract 4/5</strong>, <strong>OCRopy</strong>, <strong>EasyOCR</strong>, IIIT-H CVIT models</li>
+                            <li>Attention & Transformer variants tackle <em>very long</em> Sanskrit compounds (>50 chars)</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+            
+            <hr>
+            
+            <div id="languages">
+                <h2>Languages Tracked</h2>
+                <div class="filter-input">
+                    <input type="text" id="language-filter" placeholder="Filter languages...">
+                </div>
+                <div id="languages-container"></div>
+            </div>
+            
+            <hr>
+            
+            <div id="papers">
+                <h2>Research Papers</h2>
+                
+                <h3>Historical Development (1970s → 2000s)</h3>
+                <table>
+                    <tr>
+                        <th>Era</th>
+                        <th>Milestone</th>
+                        <th>Notes & Citation</th>
+                    </tr>
+                    <tr>
+                        <td><strong>1973 – 1980</strong></td>
+                        <td><em>First Devanagari OCR prototypes</em> by R. M. K. Sinha (IIT-Kanpur) and H. N. Mahabala</td>
+                        <td>Rule-based "syntactic pattern analysis". [1]</td>
+                    </tr>
+                    <tr>
+                        <td><strong>1980s–1990s</strong></td>
+                        <td>ISI Kolkata team (B. B. Chaudhuri & U. Pal): full pipelines for Bangla & Hindi</td>
+                        <td>≥95% on clean prints; introduced decision-tree + template classifiers. [2]</td>
+                    </tr>
+                    <tr>
+                        <td><strong>1995–2000</strong></td>
+                        <td>Punjabi OCR (Lehal et al.), Telugu & Malayalam prototypes (C-DAC/TDIL)</td>
+                        <td>Multi-stage classifiers + language-model post-correction. [3][4]</td>
+                    </tr>
+                    <tr>
+                        <td><strong>2003</strong></td>
+                        <td>Jawahar et al. bilingual Hindi-Telugu OCR</td>
+                        <td>Early "multi-script" prototype. [5]</td>
+                    </tr>
+                    <tr>
+                        <td><strong>2005–2006</strong></td>
+                        <td><strong>Tesseract</strong> open-sourced by Google & community Indic training begins</td>
+                        <td>Marks shift to freely-available engines. [6]</td>
+                    </tr>
+                    <tr>
+                        <td><strong>2010</strong></td>
+                        <td><em>Guide to OCR for Indic Scripts</em> (Springer) published</td>
+                        <td>First book-length survey summarising state of the art. [7]</td>
+                    </tr>
+                </table>
+                
+                <h3>Recent State-of-the-Art (2021–2025)</h3>
                 <ul>
-                    <li><strong>CNN-LSTM + CTC</strong> delivers segmentation-free line recognition</li>
-                    <li>Adopted in <strong>Tesseract 4/5</strong>, <strong>OCRopy</strong>, <strong>EasyOCR</strong>, IIIT-H CVIT models</li>
-                    <li>Attention & Transformer variants tackle <em>very long</em> Sanskrit compounds (>50 chars)</li>
+                    <li>99% <strong>character</strong> accuracy reported on clean Hindi, Tamil, Bangla prints with CVIT CTC-LSTM models—outperforming Google Vision in 8/13 languages. [10]</li>
+                    <li><strong>Attention-LSTM OCR for Sanskrit</strong> (Dwivedi 2020) cuts WER by 35% vs. CNN-LSTM baselines on classical texts. [12]</li>
+                    <li><strong>Vision-Transformer OCR</strong> pilots at IIT Madras for palm-leaf manuscripts (2024): early results promising for low-contrast ink.</li>
+                    <li>Handwritten Indic OCR (ICDAR 2023 competition): best teams reach 80% word accuracy on Devanagari cursive using CNN-Transformer decoders.</li>
                 </ul>
-            </li>
-        </ol>
-    </div>
-    
-    <hr>
-    
-    <div id="languages">
-        <h2>Languages Tracked</h2>
-        <div class="filter-input">
-            <input type="text" id="language-filter" placeholder="Filter languages...">
+                
+                <h3>Latest Research Papers</h3>
+                <div class="filter-input">
+                    <input type="text" id="paper-filter" placeholder="Filter papers...">
+                </div>
+                <div id="papers-container"></div>
+            </div>
+            
+            <hr>
+            
+            <div id="datasets">
+                <h2>Datasets & Corpora</h2>
+                <div class="filter-input">
+                    <input type="text" id="dataset-filter" placeholder="Filter datasets...">
+                </div>
+                <div id="datasets-container"></div>
+            </div>
+            
+            <hr>
+            
+            <div id="tools">
+                <h2>Tools & Software</h2>
+                
+                <h3>Major Projects & Institutions</h3>
+                <table>
+                    <tr>
+                        <th>Project / Institution</th>
+                        <th>Contribution</th>
+                        <th>Status</th>
+                    </tr>
+                    <tr>
+                        <td><strong>C-DAC / TDIL</strong></td>
+                        <td>Govt-funded OCRs (<em>e-Aksharayan</em> for 7 scripts)</td>
+                        <td>Free desktop tool (2018) [9]</td>
+                    </tr>
+                    <tr>
+                        <td><strong>IIIT-Hyderabad (CVIT)</strong></td>
+                        <td><em>Mozhi</em> dataset (1.2M words, 13 scripts); SOTA CNN-LSTM models</td>
+                        <td>Open-source, 2023 [10]</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ISI Kolkata</strong></td>
+                        <td>Early Bangla & Devanagari engines; algorithmic surveys</td>
+                        <td>Academic</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tesseract Indic-OCR community</strong></td>
+                        <td>Enhanced tessdata models, training scripts</td>
+                        <td>GitHub active [11]</td>
+                    </tr>
+                    <tr>
+                        <td><strong>SanskritOCR / Indsenz (O. Hellwig)</strong></td>
+                        <td>Sanskrit-specific OCR with linguistic post-checks</td>
+                        <td>Used for >3k texts</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Dharmamitra</strong></td>
+                        <td>Neural post-correction for Sanskrit & Tibetan OCR</td>
+                        <td>Non-profit (2024)</td>
+                    </tr>
+                </table>
+                
+                <h3>Available Tools</h3>
+                <div id="tools-container"></div>
+            </div>
+            
+            <hr>
+            
+            <div id="resources">
+                <h2>Additional Resources</h2>
+                
+                <h3>Key Secondary Sources</h3>
+                <ol>
+                    <li><strong>Pal, U., & Chaudhuri, B. B.</strong> "Indian Script Character Recognition: A Survey." <em>Pattern Recognition</em> 37 (2004): 1887–99.</li>
+                    <li><strong>Chaudhuri, B. B., & Pal, U.</strong> "An OCR System to Read Two Indian Language Scripts: Bangla and Devnagari (Hindi)." <em>Proceedings of ICASSP</em> (1998).</li>
+                    <li><strong>Lehal, G. S.</strong> "A Gurmukhi OCR System." <em>Journal of Research</em> 37 (2000): 159–71.</li>
+                    <li><strong>Pal, U., Wakabayashi, T., & Kimura, F.</strong> "Multilingual OCR System for South Asian Scripts." <em>IEICE Trans.</em> E83-D (2000).</li>
+                    <li><strong>Jawahar, C. V., et al.</strong> "Bilingual OCR for Hindi–Telugu Documents." <em>ICDAR</em> 2003.</li>
+                    <li><strong>Smith, R.</strong> "An Overview of the Tesseract OCR Engine." <em>ICDAR</em> 2007.</li>
+                    <li><strong>Govindaraju, V., & Chaudhuri, B. B., eds.</strong> <em>Guide to OCR for Indic Scripts.</em> Springer, 2010.</li>
+                    <li><strong>Sarkhel, S., et al.</strong> "Indic-Script OCR Using Sequence-to-Sequence Models." <em>Pattern Recognition Letters</em> 148 (2021).</li>
+                    <li><strong>Ministry of Electronics & IT, GoI.</strong> <em>e-Aksharayan User Manual</em>, 2018.</li>
+                    <li><strong>Krishna, P. R., et al.</strong> "Mozhi: A Large-Scale Dataset for Indic OCR." <em>CVPR Workshops</em> 2023.</li>
+                    <li><strong>Indic-OCR GitHub Repository.</strong> Accessed May 2025.</li>
+                    <li><strong>Dwivedi, S., et al.</strong> "Sanskrit OCR with Attention-Based Encoder-Decoder." <em>ICFHR</em> 2020.</li>
+                </ol>
+                
+                <h3>Organizations & Initiatives</h3>
+                <div id="resources-container"></div>
+            </div>
+            
+            <hr>
+            <p>© 2023 Indic OCR Research Tracker</p>
         </div>
-        <div id="languages-container"></div>
-    </div>
-    
-    <hr>
-    
-    <div id="papers">
-        <h2>Research Papers</h2>
         
-        <h3>Historical Development (1970s → 2000s)</h3>
-        <table>
-            <tr>
-                <th>Era</th>
-                <th>Milestone</th>
-                <th>Notes & Citation</th>
-            </tr>
-            <tr>
-                <td><strong>1973 – 1980</strong></td>
-                <td><em>First Devanagari OCR prototypes</em> by R. M. K. Sinha (IIT-Kanpur) and H. N. Mahabala</td>
-                <td>Rule-based "syntactic pattern analysis". [1]</td>
-            </tr>
-            <tr>
-                <td><strong>1980s–1990s</strong></td>
-                <td>ISI Kolkata team (B. B. Chaudhuri & U. Pal): full pipelines for Bangla & Hindi</td>
-                <td>≥95% on clean prints; introduced decision-tree + template classifiers. [2]</td>
-            </tr>
-            <tr>
-                <td><strong>1995–2000</strong></td>
-                <td>Punjabi OCR (Lehal et al.), Telugu & Malayalam prototypes (C-DAC/TDIL)</td>
-                <td>Multi-stage classifiers + language-model post-correction. [3][4]</td>
-            </tr>
-            <tr>
-                <td><strong>2003</strong></td>
-                <td>Jawahar et al. bilingual Hindi-Telugu OCR</td>
-                <td>Early "multi-script" prototype. [5]</td>
-            </tr>
-            <tr>
-                <td><strong>2005–2006</strong></td>
-                <td><strong>Tesseract</strong> open-sourced by Google & community Indic training begins</td>
-                <td>Marks shift to freely-available engines. [6]</td>
-            </tr>
-            <tr>
-                <td><strong>2010</strong></td>
-                <td><em>Guide to OCR for Indic Scripts</em> (Springer) published</td>
-                <td>First book-length survey summarising state of the art. [7]</td>
-            </tr>
-        </table>
-        
-        <h3>Recent State-of-the-Art (2021–2025)</h3>
-        <ul>
-            <li>99% <strong>character</strong> accuracy reported on clean Hindi, Tamil, Bangla prints with CVIT CTC-LSTM models—outperforming Google Vision in 8/13 languages. [10]</li>
-            <li><strong>Attention-LSTM OCR for Sanskrit</strong> (Dwivedi 2020) cuts WER by 35% vs. CNN-LSTM baselines on classical texts. [12]</li>
-            <li><strong>Vision-Transformer OCR</strong> pilots at IIT Madras for palm-leaf manuscripts (2024): early results promising for low-contrast ink.</li>
-            <li>Handwritten Indic OCR (ICDAR 2023 competition): best teams reach 80% word accuracy on Devanagari cursive using CNN-Transformer decoders.</li>
-        </ul>
-        
-        <h3>Latest Research Papers</h3>
-        <div class="filter-input">
-            <input type="text" id="paper-filter" placeholder="Filter papers...">
+        <div class="side-nav">
+            <a href="#ocr-results">OCR Results</a>
+            <a href="#about">About</a>
+            <a href="#languages">Languages</a>
+            <a href="#papers">Research</a>
+            <a href="#datasets">Datasets</a>
+            <a href="#tools">Tools</a>
+            <a href="#resources">Resources</a>
         </div>
-        <div id="papers-container"></div>
     </div>
-    
-    <hr>
-    
-    <div id="datasets">
-        <h2>Datasets & Corpora</h2>
-        <div class="filter-input">
-            <input type="text" id="dataset-filter" placeholder="Filter datasets...">
-        </div>
-        <div id="datasets-container"></div>
-    </div>
-    
-    <hr>
-    
-    <div id="tools">
-        <h2>Tools & Software</h2>
-        
-        <h3>Major Projects & Institutions</h3>
-        <table>
-            <tr>
-                <th>Project / Institution</th>
-                <th>Contribution</th>
-                <th>Status</th>
-            </tr>
-            <tr>
-                <td><strong>C-DAC / TDIL</strong></td>
-                <td>Govt-funded OCRs (<em>e-Aksharayan</em> for 7 scripts)</td>
-                <td>Free desktop tool (2018) [9]</td>
-            </tr>
-            <tr>
-                <td><strong>IIIT-Hyderabad (CVIT)</strong></td>
-                <td><em>Mozhi</em> dataset (1.2M words, 13 scripts); SOTA CNN-LSTM models</td>
-                <td>Open-source, 2023 [10]</td>
-            </tr>
-            <tr>
-                <td><strong>ISI Kolkata</strong></td>
-                <td>Early Bangla & Devanagari engines; algorithmic surveys</td>
-                <td>Academic</td>
-            </tr>
-            <tr>
-                <td><strong>Tesseract Indic-OCR community</strong></td>
-                <td>Enhanced tessdata models, training scripts</td>
-                <td>GitHub active [11]</td>
-            </tr>
-            <tr>
-                <td><strong>SanskritOCR / Indsenz (O. Hellwig)</strong></td>
-                <td>Sanskrit-specific OCR with linguistic post-checks</td>
-                <td>Used for >3k texts</td>
-            </tr>
-            <tr>
-                <td><strong>Dharmamitra</strong></td>
-                <td>Neural post-correction for Sanskrit & Tibetan OCR</td>
-                <td>Non-profit (2024)</td>
-            </tr>
-        </table>
-        
-        <h3>Available Tools</h3>
-        <div id="tools-container"></div>
-    </div>
-    
-    <hr>
-    
-    <div id="resources">
-        <h2>Additional Resources</h2>
-        
-        <h3>Key Secondary Sources</h3>
-        <ol>
-            <li><strong>Pal, U., & Chaudhuri, B. B.</strong> "Indian Script Character Recognition: A Survey." <em>Pattern Recognition</em> 37 (2004): 1887–99.</li>
-            <li><strong>Chaudhuri, B. B., & Pal, U.</strong> "An OCR System to Read Two Indian Language Scripts: Bangla and Devnagari (Hindi)." <em>Proceedings of ICASSP</em> (1998).</li>
-            <li><strong>Lehal, G. S.</strong> "A Gurmukhi OCR System." <em>Journal of Research</em> 37 (2000): 159–71.</li>
-            <li><strong>Pal, U., Wakabayashi, T., & Kimura, F.</strong> "Multilingual OCR System for South Asian Scripts." <em>IEICE Trans.</em> E83-D (2000).</li>
-            <li><strong>Jawahar, C. V., et al.</strong> "Bilingual OCR for Hindi–Telugu Documents." <em>ICDAR</em> 2003.</li>
-            <li><strong>Smith, R.</strong> "An Overview of the Tesseract OCR Engine." <em>ICDAR</em> 2007.</li>
-            <li><strong>Govindaraju, V., & Chaudhuri, B. B., eds.</strong> <em>Guide to OCR for Indic Scripts.</em> Springer, 2010.</li>
-            <li><strong>Sarkhel, S., et al.</strong> "Indic-Script OCR Using Sequence-to-Sequence Models." <em>Pattern Recognition Letters</em> 148 (2021).</li>
-            <li><strong>Ministry of Electronics & IT, GoI.</strong> <em>e-Aksharayan User Manual</em>, 2018.</li>
-            <li><strong>Krishna, P. R., et al.</strong> "Mozhi: A Large-Scale Dataset for Indic OCR." <em>CVPR Workshops</em> 2023.</li>
-            <li><strong>Indic-OCR GitHub Repository.</strong> Accessed May 2025.</li>
-            <li><strong>Dwivedi, S., et al.</strong> "Sanskrit OCR with Attention-Based Encoder-Decoder." <em>ICFHR</em> 2020.</li>
-        </ol>
-        
-        <h3>Organizations & Initiatives</h3>
-        <div id="resources-container"></div>
-    </div>
-    
-    <hr>
-    <p>© 2023 Indic OCR Research Tracker</p>
     
     <script src="js/main.js"></script>
+    <script>
+        // This function will be used to load OCR comparison results
+        function loadOCRComparison(originalText, ocrText) {
+            document.getElementById('original-text').textContent = originalText;
+            document.getElementById('ocr-text').textContent = ocrText;
+            
+            // Calculate simple metrics
+            const accuracy = calculateAccuracy(originalText, ocrText);
+            document.getElementById('accuracy-value').textContent = (accuracy * 100).toFixed(2) + '%';
+            
+            const cer = 100 - (accuracy * 100);
+            document.getElementById('cer-value').textContent = cer.toFixed(2) + '%';
+            
+            const wer = calculateWER(originalText, ocrText);
+            document.getElementById('wer-value').textContent = (wer * 100).toFixed(2) + '%';
+            
+            // Identify common error patterns
+            const errorPatterns = findErrorPatterns(originalText, ocrText);
+            const errorList = document.getElementById('error-patterns');
+            errorList.innerHTML = '';
+            errorPatterns.forEach(pattern => {
+                const li = document.createElement('li');
+                li.textContent = pattern;
+                errorList.appendChild(li);
+            });
+        }
+        
+        // Simple character accuracy calculation
+        function calculateAccuracy(original, ocr) {
+            if (!original || !ocr) return 0;
+            
+            let correctChars = 0;
+            const minLength = Math.min(original.length, ocr.length);
+            
+            for (let i = 0; i < minLength; i++) {
+                if (original[i] === ocr[i]) {
+                    correctChars++;
+                }
+            }
+            
+            return correctChars / Math.max(original.length, ocr.length);
+        }
+        
+        // Simple word error rate calculation
+        function calculateWER(original, ocr) {
+            if (!original || !ocr) return 1;
+            
+            const originalWords = original.trim().split(/\s+/);
+            const ocrWords = ocr.trim().split(/\s+/);
+            
+            let correctWords = 0;
+            const minLength = Math.min(originalWords.length, ocrWords.length);
+            
+            for (let i = 0; i < minLength; i++) {
+                if (originalWords[i] === ocrWords[i]) {
+                    correctWords++;
+                }
+            }
+            
+            return 1 - (correctWords / Math.max(originalWords.length, ocrWords.length));
+        }
+        
+        // Find common error patterns
+        function findErrorPatterns(original, ocr) {
+            // This is a placeholder function, to be replaced with actual error analysis
+            return [
+                "Confusion between similar characters (e.g., 'ध' and 'थ')",
+                "Missing diacritical marks",
+                "Incorrect handling of conjunct consonants"
+            ];
+        }
+        
+        // Example OCR text - this will be replaced with real data
+        const sampleOriginal = `प्रारम्भिक संस्कृत व्याकरण
+अथ शब्दानुशासनम्।
+वृद्धिरादैच्।
+अदेङ्गुणः।
+इको गुणवृद्धी।
+आदेच उदात्तात्।`;
+        
+        const sampleOCR = `प्रारम्भिक संस्कृत व्याकरण
+अथ शब्दानुशासनम्।
+वृद्धिरादैज्।
+अदेडगुणः।
+इको गुणवृद्धि।
+आदेच उद्दात्तात्।`;
+        
+        // Load sample comparison when the page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // After loading the database items
+            loadLanguageCards();
+            loadPapers();
+            loadDatasets();
+            loadTools();
+            loadResources();
+            setupFilters();
+            
+            // Load the OCR comparison
+            loadOCRComparison(sampleOriginal, sampleOCR);
+        });
+    </script>
 </body>
 </html> 
