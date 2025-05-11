@@ -1,4 +1,4 @@
-# Indic OCR Research Tracker
+# Indic OCR Database
 
 A comprehensive web-based repository tracking the state of Optical Character Recognition (OCR) for Indic languages. This project aims to catalog research efforts, datasets, tools, and resources to facilitate advancements in this domain.
 
